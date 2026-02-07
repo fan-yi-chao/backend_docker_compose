@@ -1,0 +1,4 @@
+
+# TODO: Define services here (app and postgres)
+version: '3.8'
+services:
