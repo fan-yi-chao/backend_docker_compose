@@ -1,0 +1,23 @@
+
+name: Integration Test
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+          
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+        
+      # PROBLEM: The app fails because there is no Database running!
+      # We need Docker Compose to spin up Postgres and the App together.
+      - name: Run Integration Test
+        run: python tests/integration_test.py
